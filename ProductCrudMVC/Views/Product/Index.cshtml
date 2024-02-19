@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (TempData["msg"] != null)
+{
+    string[]? msg = TempData["msg"] as string[];
+    @section Scripts {
+        <script>
+            Toast('@msg?[0]', '@msg?[1]', '@msg?[2]');
+        </script>
+    }
+}
+
+<h3>Products</h3>
+<div class="d-flex">
+    <div class="me-auto">
+        <p><a asp-action="Create">Create New</a></p>
+    </div>
+    <div>
+        <input class="form-control form-control-sm txtSearch" type="text" name="txtSearch" placeholder="Search . . ." />
+    </div>
+</div>
+
+
+<div class="protable">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody id="protbody">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Category.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="me-2"><i class="bi bi-pencil-square text-warning"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash text-danger"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
