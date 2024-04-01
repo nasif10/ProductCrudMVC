@@ -1,0 +1,127 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|d:\\nasif\\web mvc\\productcrudmvc\\productcrudmvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|solutionrelative:productcrudmvc\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|d:\\nasif\\web mvc\\productcrudmvc\\productcrudmvc\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|solutionrelative:productcrudmvc\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|d:\\nasif\\web mvc\\productcrudmvc\\productcrudmvc\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|solutionrelative:productcrudmvc\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|d:\\nasif\\web mvc\\productcrudmvc\\productcrudmvc\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|solutionrelative:productcrudmvc\\views\\product\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|d:\\nasif\\web mvc\\productcrudmvc\\productcrudmvc\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|solutionrelative:productcrudmvc\\views\\product\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|d:\\nasif\\web mvc\\productcrudmvc\\productcrudmvc\\services\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC11DD8B-3EF1-4CC7-8F5E-43AF7D4B93BC}|ProductCrudMVC\\ProductCrudMVC.csproj|solutionrelative:productcrudmvc\\services\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{873151d0-cf2e-48cc-b4bf-ad0394f6a3c3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "ProductCrudMVC\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "ProductCrudMVC\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADQAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-31T17:09:16.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "ProductCrudMVC\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "ProductCrudMVC\\Controllers\\ProductController.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAswGUAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-30T15:20:43.965Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Product\\Edit.cshtml",
+              "RelativeDocumentMoniker": "ProductCrudMVC\\Views\\Product\\Edit.cshtml",
+              "ToolTip": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Product\\Edit.cshtml",
+              "RelativeToolTip": "ProductCrudMVC\\Views\\Product\\Edit.cshtml",
+              "ViewState": "AQIAAD4AAAAAAAAAAAAAwDwAAABDAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-30T15:10:29.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Product\\Create.cshtml",
+              "RelativeDocumentMoniker": "ProductCrudMVC\\Views\\Product\\Create.cshtml",
+              "ToolTip": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Product\\Create.cshtml",
+              "RelativeToolTip": "ProductCrudMVC\\Views\\Product\\Create.cshtml",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAAEMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-30T08:57:13.204Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Services\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "ProductCrudMVC\\Services\\Repositories\\ProductRepository.cs",
+              "ToolTip": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Services\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "ProductCrudMVC\\Services\\Repositories\\ProductRepository.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAIA4wDMAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-29T19:49:27.636Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "ProductCrudMVC\\Views\\Product\\Index.cshtml",
+              "ToolTip": "D:\\Nasif\\Web MVC\\ProductCrudMVC\\ProductCrudMVC\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "ProductCrudMVC\\Views\\Product\\Index.cshtml",
+              "ViewState": "AQIAADYAAAAAAAAAAAAAAGEAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-03-29T18:44:43.469Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
