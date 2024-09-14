@@ -1,0 +1,293 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="d-flex">
+    <div class="me-auto">
+        <p><a href="#" role="button" data-bs-toggle="modal" data-bs-target="#addProModal">Create New</a></p>
+    </div>
+</div>
+
+
+<div class="protable">
+    <table class="table table-bordered table-hover w-auto">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th><input class="txtSearch" type="text" name="txtSearch" placeholder="Name" style="font-size: small; border: 1px solid #ced4da;" /></th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody id="protbody">
+            @{
+                int sl = 1;
+            }
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@sl</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Image))
+                        {
+                            <a href="#" class="show-image" data-image-path="@item.Image">@item.Name</a>
+                        }
+                        else
+                        {
+                            <span>@item.Name</span>
+                        }
+                    </td>
+                    <td>@item.Category?.Name</td>
+                    <td>@item.Description</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <a href="#" onclick="EditProduct(' + @item.Id + ')" class="me-2"><i class="bi bi-pencil-square text-warning"></i></a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Are you sure you want to delete this?')"><i class="bi bi-trash text-danger"></i></a>
+                    </td>
+                </tr>
+                sl++;
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="showImageModal" tabindex="-1" aria-labelledby="showImageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="showImageModalLabel">Preview</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" class="img-fluid rounded mx-auto d-block" alt=". . .">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addProModal" tabindex="-1" aria-labelledby="addProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProModalLabel">Create Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-3">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="row mb-2">
+                            <label for="txtName1" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input id="txtName1" name="Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="ddlCategory1" class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9">
+                                <select id="ddlCategory1" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtImage1" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input id="txtImage1" name="Image" class="form-control form-control-sm" type="file" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtDescription1" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea id="txtDescription1" name="Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtPrice1" class="col-sm-3 col-form-label">Price</label>
+                            <div class="col-sm-9">
+                                <input id="txtPrice1" type="number" name="Price" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="AddProduct()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editProModal" tabindex="-1" aria-labelledby="editProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProModalLabel">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-3">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="pid" />
+                        <div class="row mb-2">
+                            <label for="txtName2" class="col-sm-3 col-form-label">Name</label>
+                            <div class="col-sm-9">
+                                <input id="txtName2" name="Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="ddlCategory2" class="col-sm-3 col-form-label">Category</label>
+                            <div class="col-sm-9">
+                                <select id="ddlCategory2" name="Category" asp-items="@ViewBag.Categories" class="form-select form-select-sm"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtImage2" class="col-sm-3 col-form-label">Image</label>
+                            <div class="col-sm-9">
+                                <input id="txtImage2" name="Image" class="form-control form-control-sm" type="file" />
+                                <img id="imgImage2" alt="#" width="90" height="50">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtDescription2" class="col-sm-3 col-form-label">Description</label>
+                            <div class="col-sm-9">
+                                <textarea id="txtDescription2" name="Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtPrice2" class="col-sm-3 col-form-label">Price</label>
+                            <div class="col-sm-9">
+                                <input id="txtPrice2" type="number" name="Price" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" onclick="UpdateProduct()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            @if (TempData["Toast"] != null) {
+                @Html.Raw(TempData["Toast"])
+            }
+
+            $('.show-image').click(function (e) {
+                e.preventDefault();
+                var imageSrc = $(this).data('imagePath');
+                $('#modalImage').attr('src', '/Images/' + imageSrc);
+                $('#showImageModal').modal('show');
+            });
+        });
+
+        function AddProduct() {
+            var formData = new FormData();
+            formData.append('Name', $('#txtName1').val());
+            formData.append('CategoryId', $('#ddlCategory1').val());
+            formData.append('Description', $('#txtDescription1').val());
+            formData.append('Price', $('#txtPrice1').val());
+            var imgInput = $('#txtImage1')[0].files[0];
+            if (imgInput) {
+                formData.append('Image', $('#txtImage1')[0].files[0]);
+            }
+            
+            $.ajax({
+                url: "/Product/Create",
+                method: "Post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success) {
+                        $('#addProModal').modal('hide');
+                        Toast('Success', result.message, 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function EditProduct(id) {
+            $.ajax({
+                type: "GET",
+                url: "/Product/Edit?id=" + id,
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    $('#pid').val(result.id);
+                    $('#txtName2').val(result.name);
+                    $('#ddlCategory2').val(result.categoryId);
+                    $('#txtDescription2').val(result.description);
+                    $('#txtPrice2').val(result.price);
+
+                    if (result.image) {
+                        $('#imgImage2').attr('src', '/Images/' + result.image);
+                    }
+                    else{
+                        $('#imgImage2').hide();
+                    }
+                    $('#editProModal').modal('show');
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function UpdateProduct() {
+            var formData = new FormData();
+            formData.append('Id', $('#pid').val());
+            formData.append('Name', $('#txtName2').val());
+            formData.append('CategoryId', $('#ddlCategory2').val());
+            formData.append('Description', $('#txtDescription2').val());
+            formData.append('Price', $('#txtPrice2').val());
+
+            var imgInput = $('#txtImage2')[0].files[0];
+            if (imgInput) {
+                formData.append('Image', $('#txtImage2')[0].files[0]);
+            }
+
+            $.ajax({
+                url: "/Product/Edit",
+                method: "POST",
+                data: formData,
+                dataType: "json",
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success) {
+                        $('#editProModal').modal('hide');
+                        Toast('Success', result.message, 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 3000);
+                    }
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+    </script>
+}
