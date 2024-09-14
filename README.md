@@ -1,2 +1,2 @@
-# ProductCrudMVC
-.NET MVC web app using Repository pattern
+## `Product Crud MVC`
+![](ProductCrudMVC/wwwroot/images/sample.gif)
