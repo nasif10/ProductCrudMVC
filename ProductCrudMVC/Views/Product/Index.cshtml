@@ -1,0 +1,330 @@
+﻿@{
+    ViewBag.Title = "Products";
+}
+
+<table id="tblPro" class="display"></table>
+
+<div class="modal fade" id="addProModal" tabindex="-1" aria-labelledby="addProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="addProModalLabel">Create Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-2">
+                    <form method="post" enctype="multipart/form-data">
+                        <div class="row mb-2">
+                            <label for="txtName" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <input id="txtName" name="Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="ddlCategory" class="col-sm-4 col-form-label">Category</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <select id="ddlCategory" name="Category" class="form-select form-select-sm"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="fileImage" class="col-sm-4 col-form-label">Image</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <input type="file" id="fileImage" name="Image" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="txtDescription" class="col-sm-4 col-form-label">Description</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <textarea id="txtDescription" name="Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="txtPrice" class="col-sm-4 col-form-label">Price</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <input id="txtPrice" type="number" name="Price" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="createProduct()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editProModal" tabindex="-1" aria-labelledby="editProModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fs-5" id="editProModalLabel">Edit Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mx-2">
+                    <form method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="pId" />
+                        <div class="row mb-2">
+                            <label for="etxtName" class="col-sm-4 col-form-label">Name</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <input id="etxtName" name="Name" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="eddlCategory" class="col-sm-4 col-form-label">Category</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <select id="eddlCategory" name="Category" class="form-select form-select-sm"></select>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="etxtImage" class="col-sm-4 col-form-label">Image</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <input type="file" id="etxtImage" name="Image" class="form-control form-control-sm" />
+                                <input type="hidden" id="etxtImage1" />
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <label for="etxtDescription" class="col-sm-4 col-form-label">Description</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <textarea id="etxtDescription" name="Description" class="form-control form-control-sm"></textarea>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label for="etxtPrice" class="col-sm-4 col-form-label">Price</label>
+                            <div class="col-sm-8 d-flex align-items-center">
+                                <input id="etxtPrice" type="number" name="Price" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" onclick="updateProduct()">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            new DataTable('#tblPro', {
+                ajax: {
+                    url: '/Product/GetProducts',
+                    type: 'Get',
+                    datatype: 'json',
+                    dataSrc: function (result) {
+                        if (result.success === false) {
+                            Toast('Error', result.message, 'error');
+                            return [];
+                        }
+                        return result.data;
+                    }
+                },
+                columns: [
+                    {
+                        data: null,
+                        title: '#',
+                        render: function (data, type, row, meta) {
+                            return meta.row + 1;
+                        },
+                        type: 'string',
+                        width: "4%"
+                    },
+                    { data: 'name', title: 'Name', width: "15%" },
+                    { data: 'categoryName', title: 'Category', width: "10%" },
+                    {
+                        data: 'image', title: 'Image', width: "15%",
+                        render: function (data, type, row, meta) {
+                            return (data && data.length > 0)  ? `<a href="/images/${data}" target="_blank">${data.substring(13)}</a>` : '';
+                        }
+                    },
+                    { data: 'description', title: 'Description', width: "20%" },
+                    { data: 'price', title: 'Price', type: 'string', width: "32%" },
+                    {
+                        data: null,
+                        render: function (data) {
+                            return "<a href='#' onclick='editProduct(" + data.id + ")'><i class='bi bi-pencil-square text-warning'></i></a>";
+                        },
+                        width: "2%"
+                    },
+                    {
+                        data: null,
+                        render: function (data) {
+                            return "<a href='#' onclick='deleteProduct(" + data.id + ")'><i class='bi bi-trash text-danger'></i></a>";
+                        },
+                        width: "2%"
+                    },
+
+                ],
+                ordering: false,
+                info: false,
+                layout: {
+                    topStart: function (){
+                        let $toolbar = $('<div><a href="#" id="createCat" onclick="addProduct()">Create New</a></div>');
+                        return $toolbar[0];
+                    },
+                    bottomStart: 'pageLength',
+                }
+
+            });
+        });
+
+        function addProduct() {
+            $('#txtName').val('');
+            GetCategories("ddlCategory");
+            $('#addProModal').modal('show');
+        }
+
+        function GetCategories(ddlId) {
+            $.ajax({
+                type: "Get",
+                url: "/Category/GetCategories",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success){
+                        $("#" + ddlId).empty();
+                        $.each(result.data, function (index, item) {
+                            $("#" + ddlId).append('<option value="' + item.id + '">' + item.name + '</option>');
+                        });
+                    } 
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        }
+
+        function createProduct() {
+            var formData = new FormData();
+            formData.append('Name', $('#txtName').val());
+            formData.append('CategoryId', $('#ddlCategory').val());
+            formData.append('Description', $('#txtDescription').val());
+            formData.append('Price', $('#txtPrice').val());
+            let inputImg = $('#fileImage')[0];
+            formData.append('Image', inputImg.files.length > 0 ? $('#fileImage')[0].files[0] : '');
+
+            $.ajax({
+                url: "/Product/CreateProduct",
+                method: "Post",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success) {
+                        $('#addProModal').modal('hide');
+                        $('#tblPro').DataTable().ajax.reload();
+                        Toast('Success', result.message, 'success');
+                    }
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function editProduct(pid) {
+            GetCategories("eddlCategory");
+
+            $.ajax({
+                type: "GET",
+                url: "/Product/GetProduct?id=" + pid,
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success){
+                        $('#pId').val(result.data.id);
+                        $('#etxtName').val(result.data.name);
+                        $('#eddlCategory').val(result.data.categoryId);
+                        $('#etxtImage1').val(result.data.image);
+                        $('#etxtDescription').val(result.data.description);
+                        $('#etxtPrice').val(result.data.price);
+
+                        $('#editProModal').modal('show');
+                    } 
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function updateProduct() {
+            var formData = new FormData();
+            formData.append('Id', $('#pId').val());
+            formData.append('Name', $('#etxtName').val());
+            formData.append('CategoryId', $('#eddlCategory').val());
+            formData.append('Image', $('#etxtImage1').val());
+            formData.append('Description', $('#etxtDescription').val());
+            formData.append('Price', $('#etxtPrice').val());
+
+            let inputImg = $('#etxtImage')[0];
+            if (inputImg.files.length > 0) {
+                formData.append('Image', inputImg.files[0]);
+            }
+
+            $.ajax({
+                url: "/Product/UpdateProduct",
+                method: "POST",
+                data: formData,
+                processData: false,
+                contentType: false,
+                dataType: "json",
+                success: function (result) {
+                    //console.log(result);
+                    if (result.success) {
+                        $('#editProModal').modal('hide');
+                        $('#tblPro').DataTable().ajax.reload();
+                        Toast('Success', result.message, 'success');
+                    }
+                    else {
+                        Toast('Error', result.message, 'error');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error:", error);
+                }
+            });
+        }
+
+        function deleteProduct(id) {
+            if (confirm("Are you sure you want to delete this product?")) {
+                $.ajax({
+                    url: "/Product/DeleteProduct",
+                    method: "POST",
+                    data: { id: id },
+                    dataType: "json",
+                    success: function (result) {
+                        //console.log(result);
+                        if (result.success) {
+                            $('#tblPro').DataTable().ajax.reload();
+                            Toast('Success', result.message, 'success');
+                        }
+                        else {
+                            Toast('Error', result.message, 'error');
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error:", error);
+                    }
+                });
+            }
+        }
+
+    </script>
+}
